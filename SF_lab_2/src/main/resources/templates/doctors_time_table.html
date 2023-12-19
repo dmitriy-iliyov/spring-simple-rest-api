@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin-interfase}" th:object="${doctor}">
+    <select class="doctors">
+        <option value="dc1">Doctor 1</option>
+        <option value="dc2">Doctor 2</option>
+        <option value="dc3">Doctor 3</option>
+        <option value="dc4">Doctor 4</option>
+    </select>
+    <table>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <label id="date0"></label>
+            </td>
+            <td>
+                <label id="date1"></label>
+            </td>
+            <td>
+                <label id="date2"></label>
+            </td>
+            <td>
+                <label id="date3"></label>
+            </td>
+            <td>
+                <label id="date4"></label>
+                </td>
+            <td>
+                <label id="date5"></label>
+                </td>
+            <td><label id="date6"></label>
+            </td>
+        </tr>
+        <tr>
+            <td>Work time</td>
+            <td><input name="mondey_work_time"/></td>
+            <td><input name="tuesday_work_time"/></td>
+            <td><input name="wednesday_work_time"/></td>
+            <td><input name="thursday_work_time"/></td>
+            <td><input name="friday_work_time"/></td>
+            <td><input name="saturday_work_time"/></td>
+            <td><input name="sunday_work_time"/></td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+        function zero_first_format(value)
+        {
+            if (value < 10) { value='0'+value;}
+            return value;
+        }
+        function date_time(i)
+        {
+            var current_datetime = new Date();
+            return zero_first_format(current_datetime.getDate())+"."+zero_first_format(current_datetime.getMonth()+1+i);
+        }
+        for (i = 0; i<7; i++){document.getElementById('date'+i).innerHTML = date_time(i);}
+    </script>
+
+    <input type = "submit" />
+</form>
+<p></p>
+
+</body>
+</html>
