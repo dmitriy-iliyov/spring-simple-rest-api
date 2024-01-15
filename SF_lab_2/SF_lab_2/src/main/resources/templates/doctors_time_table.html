@@ -16,13 +16,13 @@
     <table class="table">
         <tr>
             <th colspan="2"> </th>
-            <th colspan="2">Monday</th>
-            <th colspan="2">Tuesday</th>
-            <th colspan="2">Wednesday</th>
-            <th colspan="2">Thursday</th>
-            <th colspan="2">Friday</th>
-            <th colspan="2">Saturday</th>
-            <th colspan="2">Sunday</th>
+            <th colspan="2"><label id="day0"></label></th>
+            <th colspan="2"><label id="day1"></label></th>
+            <th colspan="2"><label id="day2"></label></th>
+            <th colspan="2"><label id="day3"></label></th>
+            <th colspan="2"><label id="day4"></label></th>
+            <th colspan="2"><label id="day5"></label></th>
+            <th colspan="2"><label id="day6"></label></th>
         </tr>
         <tr>
             <td colspan="2">Date</td>
@@ -85,8 +85,13 @@
             return zero_first_format(current_datetime.getDate() + i)+"."+zero_first_format(current_datetime.getMonth()+1);
         }
 
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         for (i = 0; i<7; i++){
             document.getElementById('date'+i).innerHTML = date_time(i);
+            var dateArray = date_time(i).split('.');
+            var d = new Date(dateArray[1] - 1, dateArray[0]);
+            var n = d.getDay();
+            document.getElementById('day'+i).innerHTML = days[n];
         }
     </script>
     <input type = "submit"/>
