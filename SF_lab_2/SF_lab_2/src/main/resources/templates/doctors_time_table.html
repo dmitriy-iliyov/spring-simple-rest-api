@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin-interfase}" th:object="${doctor}">
+    <select class="doctors">
+        <option value="dc1">Doctor 1</option>
+        <option value="dc2">Doctor 2</option>
+        <option value="dc3">Doctor 3</option>
+        <option value="dc4">Doctor 4</option>
+    </select>
+    <table class="table">
+        <tr>
+            <th colspan="2"> </th>
+            <th colspan="2">Monday</th>
+            <th colspan="2">Tuesday</th>
+            <th colspan="2">Wednesday</th>
+            <th colspan="2">Thursday</th>
+            <th colspan="2">Friday</th>
+            <th colspan="2">Saturday</th>
+            <th colspan="2">Sunday</th>
+        </tr>
+        <tr>
+            <td colspan="2">Date</td>
+            <td colspan="2"><label id="date0"></label></td>
+            <td colspan="2"><label id="date1"></label></td>
+            <td colspan="2"><label id="date2"></label></td>
+            <td colspan="2"><label id="date3"></label></td>
+            <td colspan="2"><label id="date4"></label></td>
+            <td colspan="2"><label id="date5"></label></td>
+            <td colspan="2"><label id="date6"></label></td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+            <td>from</td>
+            <td>to</td>
+        </tr>
+        <tr>
+            <td colspan="2">Work time</td>
+            <td><input name="mondey_from"/></td>
+            <td><input name="mondey_to"/></td>
+
+            <td><input name="tuesday_from"/></td>
+            <td><input name="tuesday_to"/></td>
+
+            <td><input name="wednesday_from"/></td>
+            <td><input name="wednesday_to"/></td>
+
+            <td><input name="thursday_from"/></td>
+            <td><input name="thursday_to"/></td>
+
+            <td><input name="friday_from"/></td>
+            <td><input name="friday_to"/></td>
+
+            <td><input name="saturday_from"/></td>
+            <td><input name="saturday_to"/></td>
+
+            <td><input name="sunday_from"/></td>
+            <td><input name="sunday_to"/></td>
+        </tr>
+    </table>
+    <script>
+        function zero_first_format(value){
+            if (value < 10) { value='0'+value;}
+            return value;
+        }
+        function date_time(i){
+            var current_datetime = new Date();
+            return zero_first_format(current_datetime.getDate() + i)+"."+zero_first_format(current_datetime.getMonth()+1);
+        }
+
+        for (i = 0; i<7; i++){
+            document.getElementById('date'+i).innerHTML = date_time(i);
+        }
+    </script>
+    <input type = "submit"/>
+</form>
+<p></p>
+
+</body>
+</html>
