@@ -1,21 +1,11 @@
 package com.example.sf_lab_2.models;
 
-import java.util.Date;
-import java.util.HashMap;
-
 
 public class Doctor {
     private String name;
     private String specification;
     private String number;
     private String email;
-
-//    public Doctor(String name, String specification, String number, String email) {
-//        this.name = name;
-//        this.specification = specification;
-//        this.number = number;
-//        this.email = email;
-//    }
 
     public String getName() {
         return name;
@@ -31,5 +21,26 @@ public class Doctor {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString(){
+        return "{name : " + this.name + "; specification : " + this.specification + "; number : " + this.number + "; email : " + this.email + "}";
     }
 }
