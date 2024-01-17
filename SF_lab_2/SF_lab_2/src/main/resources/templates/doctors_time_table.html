@@ -6,13 +6,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<form th:method="POST" th:action="@{/admin-interfase}" th:object="${doctor}">
-    <select class="doctors">
-        <option value="dc1">Doctor 1</option>
-        <option value="dc2">Doctor 2</option>
-        <option value="dc3">Doctor 3</option>
-        <option value="dc4">Doctor 4</option>
-    </select>
+<form th:method="GET" th:action="@{/admin-interface}" th:object="${doctor}">
     <table class="table">
         <tr>
             <th colspan="2"> </th>
@@ -53,8 +47,8 @@
         </tr>
         <tr>
             <td colspan="2">Work time</td>
-            <td><input name="mondey_from"/></td>
-            <td><input name="mondey_to"/></td>
+            <td><input class="inputw" name="mondey_from"/></td>
+            <td><input class="input" name="mondey_to"/></td>
 
             <td><input name="tuesday_from"/></td>
             <td><input name="tuesday_to"/></td>
@@ -80,18 +74,21 @@
             if (value < 10) { value='0'+value;}
             return value;
         }
+
         function date_time(i){
             var current_datetime = new Date();
             return zero_first_format(current_datetime.getDate() + i)+"."+zero_first_format(current_datetime.getMonth()+1);
         }
 
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var current_year = new Date().getFullYear();
         for (i = 0; i<7; i++){
             document.getElementById('date'+i).innerHTML = date_time(i);
             var dateArray = date_time(i).split('.');
-            var d = new Date(dateArray[1] - 1, dateArray[0]);
+            var d = new Date(current_year, dateArray[1] - 1, dateArray[0]);
             var n = d.getDay();
             document.getElementById('day'+i).innerHTML = days[n];
+            dateArray = [];
         }
     </script>
     <input type = "submit"/>

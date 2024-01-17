@@ -6,19 +6,14 @@ import java.util.HashMap;
 
 public class Doctor {
     private String name;
-    private HashMap<Date, Long> doctorTimeTable;
+    private String specification;
+    private String number;
+    private String email;
 
-    public Doctor(String name, HashMap<Date, Long> doctorTimeTable) {
-        this.name = name;
-        this.doctorTimeTable = doctorTimeTable;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public HashMap<Date, Long> getDoctorTimeTable() {
-        return doctorTimeTable;
-    }
-
+//    public Doctor(String name, String specification, String number, String email) {
+//        this.name = name;
+//        this.specification = specification;
+//        this.number = number;
+//        this.email = email;
+//    }
 }

@@ -18,7 +18,7 @@ public class PolyclinicRepository {
     }
 
     public Doctor getDoctor(String name) {
-        return new Doctor("NAME", new HashMap<>());
+        return new Doctor();
     }
 
     public static Boolean checkDoctorExistence (String name) {
