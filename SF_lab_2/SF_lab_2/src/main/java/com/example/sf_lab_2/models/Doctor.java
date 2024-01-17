@@ -41,6 +41,10 @@ public class Doctor {
 
     @Override
     public String toString(){
-        return "{name : " + this.name + "; specification : " + this.specification + "; number : " + this.number + "; email : " + this.email + "}";
+        return "Doctor{"+
+                " name=" + this.name + ";" +
+                " specification=" + this.specification + ";"+
+                " number=" + this.number + ";"+
+                " email=" + this.email + "}";
     }
 }
