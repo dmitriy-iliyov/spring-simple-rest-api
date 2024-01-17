@@ -16,4 +16,20 @@ public class Doctor {
 //        this.number = number;
 //        this.email = email;
 //    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

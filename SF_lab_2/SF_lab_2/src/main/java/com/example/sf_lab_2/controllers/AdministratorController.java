@@ -4,9 +4,7 @@ import com.example.sf_lab_2.models.Doctor;
 import com.example.sf_lab_2.service.AdministratorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -27,11 +25,11 @@ public class AdministratorController {
         model.addAttribute("doctor", new Doctor());
         return "doctor_register_form";
     }
-    @PostMapping("/add-doctor")
-    public String submitDoctor(@ModelAttribute Doctor doctor, Model model){
-        model.addAttribute("doctor", doctor);
-        return "doctor_register_form";
-    }
+//    @PostMapping("/add-doctor")
+//    public String submitDoctor(@ModelAttribute Doctor doctor, Model model){
+//        model.addAttribute("doctor", doctor);
+//        return "result";
+//    }
     @GetMapping("/admin-interface")
     public String setAppointments() {
         return "doctors_time_table";
