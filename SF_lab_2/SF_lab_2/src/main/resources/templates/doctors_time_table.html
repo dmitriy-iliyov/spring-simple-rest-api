@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<form th:method="GET" th:action="@{/admin-interface/doctors-time-table}" th:object="${doctor}">
+<form th:method="POST" th:action="@{/admin-interface/doctors-time-table}" th:object="${timeTable}">
     <table class="table">
         <tr>
             <th colspan="2"> </th>
@@ -47,26 +46,26 @@
         </tr>
         <tr>
             <td colspan="2">Work time</td>
-            <td><input class="inputw" name="mondey_from"/></td>
-            <td><input class="input" name="mondey_to"/></td>
+            <td><input type="text" th:field ="*{firstDayFrom}"/></td>
+            <td><input type="text" th:field ="*{firstDayTo}"/></td>
 
-            <td><input name="tuesday_from"/></td>
-            <td><input name="tuesday_to"/></td>
+            <td><input type="text" th:field ="*{secondDayFrom}"/></td>
+            <td><input type="text" th:field ="*{secondDayTo}"/></td>
 
-            <td><input name="wednesday_from"/></td>
-            <td><input name="wednesday_to"/></td>
+            <td><input type="text" th:field ="*{thirdDayFrom}"/></td>
+            <td><input type="text" th:field ="*{thirdDayTo}"/></td>
 
-            <td><input name="thursday_from"/></td>
-            <td><input name="thursday_to"/></td>
+            <td><input type="text" th:field ="*{forthDayFrom}"/></td>
+            <td><input type="text" th:field ="*{forthDayTo}"/></td>
 
-            <td><input name="friday_from"/></td>
-            <td><input name="friday_to"/></td>
+            <td><input type="text" th:field ="*{fifthDayFrom}"/></td>
+            <td><input type="text" th:field ="*{fifthDayTo}"/></td>
 
-            <td><input name="saturday_from"/></td>
-            <td><input name="saturday_to"/></td>
+            <td><input type="text" th:field ="*{sixthDayFrom}"/></td>
+            <td><input type="text" th:field ="*{sixthDayTo}"/></td>
 
-            <td><input name="sunday_from"/></td>
-            <td><input name="sunday_to"/></td>
+            <td><input type="text" th:field ="*{seventhDayFrom}"/></td>
+            <td><input type="text" th:field ="*{seventhDayTo}"/></td>
         </tr>
     </table>
     <script>
@@ -93,7 +92,5 @@
     </script>
     <input type = "submit"/>
 </form>
-<p></p>
-
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-$END$
+<h1>Doctor Registration</h1>
+<form th:method="POST" th:action="@{/admin-interface/add-doctor}" th:object="${doctor}">
+    <label>search by name</label>
+    <input type="text" th:field="*{name}" /><br/>
+</form>
 </body>
 </html>
