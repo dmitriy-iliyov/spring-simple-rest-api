@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Doctor Registration</h1>
-<form th:method="POST" th:action="@{/admin-interface/add-doctor}" th:object="${doctor}">
+<form th:method="POST" th:action="@{/admin-interface/get-doctor}" th:object="${doctor}">
     <label>search by name</label>
     <input type="text" th:field="*{name}" /><br/>
 </form>
