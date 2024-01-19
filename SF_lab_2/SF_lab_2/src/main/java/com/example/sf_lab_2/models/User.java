@@ -2,8 +2,9 @@ package com.example.sf_lab_2.models;
 
 public class User {
     private String name;
-    private String number;
     private String email;
+    private String number;
+    private String password;
 
     public String getName() {
         return name;
@@ -11,14 +12,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getEmail() {
@@ -29,12 +22,29 @@ public class User {
         this.email = email;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", number='" + number + '\'' +
                 ", email='" + email + '\'' +
+                ", number='" + number + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
