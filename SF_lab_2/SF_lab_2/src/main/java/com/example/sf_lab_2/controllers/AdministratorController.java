@@ -3,7 +3,6 @@ package com.example.sf_lab_2.controllers;
 import com.example.sf_lab_2.models.Doctor;
 import com.example.sf_lab_2.models.TimeTable;
 import com.example.sf_lab_2.service.AdministratorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
