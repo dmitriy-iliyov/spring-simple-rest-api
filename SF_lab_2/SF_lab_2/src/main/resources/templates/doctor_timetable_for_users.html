@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .table {
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #dddddd;
+      border-collapse: collapse;
+    }
+    .table th {
+      font-weight: bold;
+      padding: 5px;
+      background: #efefef;
+      border: 1px solid #dddddd;
+    }
+    .table td {
+      border: 1px solid #dddddd;
+      padding: 5px;
+    }
+
+    label {
+      display: inline-block;
+      width: 200px;
+      margin: 5px;
+      text-align: left;
+    }
+    button {
+      padding: 5px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <table class="table">
+    <tr>
+      <th colspan="2"> </th>
+      <th colspan="2"><label id="day0"></label></th>
+      <th colspan="2"><label id="day1"></label></th>
+      <th colspan="2"><label id="day2"></label></th>
+      <th colspan="2"><label id="day3"></label></th>
+      <th colspan="2"><label id="day4"></label></th>
+      <th colspan="2"><label id="day5"></label></th>
+      <th colspan="2"><label id="day6"></label></th>
+    </tr>
+    <tr>
+      <td colspan="2">Date</td>
+      <td colspan="2"><label id="date0"></label></td>
+      <td colspan="2"><label id="date1"></label></td>
+      <td colspan="2"><label id="date2"></label></td>
+      <td colspan="2"><label id="date3"></label></td>
+      <td colspan="2"><label id="date4"></label></td>
+      <td colspan="2"><label id="date5"></label></td>
+      <td colspan="2"><label id="date6"></label></td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+      <td>from</td>
+      <td>to</td>
+    </tr>
+    <tr>
+      <td colspan="2">Work time</td>
+      <td>
+        <p th:text = "${timeTable.getFifthDayFrom()}">VALUE</p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getFifthDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getSecondDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getSecondDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getThirdDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getThirdDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getForthDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getForthDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getFifthDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getFifthDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getSixthDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getSixthDayTo()}"></p>
+      </td>
+
+      <td>
+        <p th:text = "${timeTable.getSeventhDayFrom()}"></p>
+      </td>
+      <td>
+        <p th:text = "${timeTable.getSeventhDayTo()}"></p>
+      </td>
+    </tr>
+  </table>
+
+
+  <script>
+    function zero_first_format(value){
+      if (value < 10) { value='0'+value;}
+      return value;
+    }
+
+    function date_time(i){
+      var current_datetime = new Date();
+      return zero_first_format(current_datetime.getDate() + i)+"."+zero_first_format(current_datetime.getMonth()+1);
+    }
+
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var current_year = new Date().getFullYear();
+    for (i = 0; i<7; i++){
+      document.getElementById('date'+i).innerHTML = date_time(i);
+      var dateArray = date_time(i).split('.');
+      var d = new Date(current_year, dateArray[1] - 1, dateArray[0]);
+      var n = d.getDay();
+      document.getElementById('day'+i).innerHTML = days[n];
+      dateArray = [];
+    }
+  </script>
+</body>
+</html>
