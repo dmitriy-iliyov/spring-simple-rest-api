@@ -1,9 +1,8 @@
 package com.example.sf_lab_2.controllers;
 
-import com.example.sf_lab_2.models.Doctor;
-import com.example.sf_lab_2.models.TimeTable;
 import com.example.sf_lab_2.models.User;
 import com.example.sf_lab_2.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,19 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String userHomePage(){
         return "user_home_page";
     }
 
-//    @GetMapping("/user-all-doctors")
-//    public String allDoctors(){
-//
-//    }
     @GetMapping("/add")
     public String userForm(Model model){
         model.addAttribute("user", new User());
@@ -33,53 +29,58 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public String userSubmit(@ModelAttribute Doctor doctor, Model model){
-        model.addAttribute("doctor", doctor);
-        System.out.println(doctor);
-        //
-        return "user_register_form";
+    public String userSubmit(@ModelAttribute User user){
+        this.userService.createUser(user);
+        return "user_current";
     }
 
-    @GetMapping("/get/{name}")
-    public String getUser(@PathVariable("name") String doctor, Model model){
-        return "current_user";
+    @GetMapping("/get/{value}")
+    public <T> String getUser(@PathVariable("value") T value, Model model){
+        model.addAttribute("user", this.userService.getUser(value));
+        return "user_current";
     }
 
-    @GetMapping("/get")
-    public String getUser(){
-        return "doctors";
+    @GetMapping("/get/{id}/change")
+    public <T> String userFormForChange(@PathVariable("id") T id,Model model){
+        model.addAttribute("user", this.userService.getUser(id));
+        return "user_changing_form";
     }
 
-    @PostMapping("/change")
-    public String userSubmitChanges(@ModelAttribute Doctor doctor, Model model){
-        model.addAttribute("doctor", doctor);
-        System.out.println(doctor);
-        //
-        return "user_register_form";
+    @PostMapping("/get/{id}/changed")
+    public String userSubmitChanges(@ModelAttribute User user, @PathVariable("id") int id, Model model){
+        this.userService.updateUser(user.getId(), user);
+        model.addAttribute("user", user);
+        return "user_current";
     }
 
-    @GetMapping("/change")
-    public String userFormForChange(Model model){
-        model.addAttribute("doctor", new Doctor());
-        return "user_register_form";
+    @PostMapping("/del/{id}")
+    public String delUser(@PathVariable("id") int id){
+        this.userService.deleteUser(id);
+        return "redirect:/user/";
     }
 
-    @GetMapping("/get-doctor/{name}")
-    public String getDoctor(@PathVariable("name") String doctor, Model model){
-        return "current_doctor";
+    @GetMapping("/get-doctor/{value}")
+    public <T> String getDoctor(@PathVariable("value") T value, Model model){
+        model.addAttribute("doctor", this.userService.getDoctor(value));
+        return "current_doctor_for_user";
     }
 
-    @GetMapping("/get-doctor/time-table")
-    public String appointmentsForm(Model model) {
-        model.addAttribute("timeTable", new TimeTable());
-        return "doctors_time_table";
+    @GetMapping("/get-doctors")
+    public String getDoctors(Model model){
+        model.addAttribute("doctors", this.userService.allDoctors());
+        return "doctors_for_users";
     }
 
-    @PostMapping("/get-doctor/time-table")
-    public String appointmentsSubmit(@ModelAttribute TimeTable timeTable, Model model){
-        model.addAttribute("timeTable", timeTable);
-        System.out.println(timeTable);
-        //
-        return "doctors_time_table";
-    }
+//    @GetMapping("/doctor-time-table")
+//    public String appointmentsForm(Model model) {
+//        model.addAttribute("timeTable", new TimeTable());
+//        return "doctors_time_table";
+//    }
+//
+//    @PostMapping("/doctor-time-table")
+//    public String appointmentsSubmit(@ModelAttribute TimeTable timeTable){
+//        System.out.println(timeTable);
+//        //
+//        return "doctors_time_table";
+//    }
 }

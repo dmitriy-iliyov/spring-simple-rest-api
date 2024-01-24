@@ -1,10 +1,21 @@
 package com.example.sf_lab_2.models;
 
+
 public class User {
+
+    private int id;
     private String name;
     private String email;
     private String number;
     private String password;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -41,7 +52,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", number='" + number + '\'' +
                 ", password='" + password + '\'' +

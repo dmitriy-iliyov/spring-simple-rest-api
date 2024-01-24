@@ -1,7 +1,12 @@
 package com.example.sf_lab_2.models;
 
 
+import java.util.Date;
+
 public class TimeTable {
+
+    private Integer doctorID;
+    private String date;
     private String firstDayFrom;
     private String firstDayTo;
     private String secondDayFrom;
@@ -16,6 +21,27 @@ public class TimeTable {
     private String sixthDayTo;
     private String seventhDayFrom;
     private String seventhDayTo;
+
+    public TimeTable(int doctorID) {
+        this.doctorID = doctorID;
+        this.date = new Date().toString();
+    }
+
+    public Integer getDoctorID() {
+        return doctorID;
+    }
+
+    public void setDoctorID(Integer doctorID) {
+        this.doctorID = doctorID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getFirstDayFrom() {
         return firstDayFrom;
@@ -148,4 +174,34 @@ public class TimeTable {
                 ", seventhDayTo='" + seventhDayTo + '\'' +
                 '}';
     }
+//    private int timeFrom;
+//    private int timeTo;
+//
+//
+//    public int getTimeFrom() {
+//        return timeFrom;
+//    }
+//
+//    public void setTimeFrom(int timeFrom) {
+//        this.timeFrom = timeFrom;
+//    }
+//
+//    public int getTimeTo() {
+//        return timeTo;
+//    }
+//
+//    public void setTimeTo(int timeTo) {
+//        this.timeTo = timeTo;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "TimeTable{" +
+//                "doctorID=" + doctorID +
+//                ", date=" + date +
+//                ", timeFrom=" + timeFrom +
+//                ", timeTo=" + timeTo +
+//                '}';
+//    }
+
 }
