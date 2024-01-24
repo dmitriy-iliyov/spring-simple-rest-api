@@ -2,9 +2,12 @@ package com.example.sf_lab_6.entitys;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+@Data
+@Table
 @Entity(name = "doctors")
 public class DoctorEntity {
 
@@ -22,54 +25,11 @@ public class DoctorEntity {
     @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique = true)
     private String email;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private TimeTableEntity timeTable;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", specification='" + specification + '\'' +
-                ", number='" + number + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public DoctorEntity getEntity(){
+        return this;
     }
 }
