@@ -1,25 +1,28 @@
 package com.example.sf_lab_2.service;
 
-import com.example.sf_lab_2.repository.PolyclinicRepository;
+import com.example.sf_lab_2.models.Admin;
+import com.example.sf_lab_2.repository.AdminDAO;
+import com.example.sf_lab_2.repository.DoctorDAO;
+import com.example.sf_lab_2.repository.TimeTableDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class AdministratorService {
-    private PolyclinicRepository repository;
+    private AdminDAO adminDAO;
 
-    public AdministratorService() {
 
+    @Autowired
+    public AdministratorService(AdminDAO adminDAO, DoctorDAO doctorDAO, TimeTableDAO timeTableDAO) {
+        this.adminDAO = adminDAO;
     }
 
-    private void addAppointment(String doctorName, Date time, Long userID) {
+    public void create(Admin admin){
+        this.adminDAO.createAdmin(admin);
     }
 
-    private void deleteAppointment(String doctorName, Date time, Long userID) {
-
+    public void delete(int id){
+        this.adminDAO.delAdmin(id);
     }
 
-    private void updateAppointment(String doctorName, Date time, Long userID) {
-    }
 }
