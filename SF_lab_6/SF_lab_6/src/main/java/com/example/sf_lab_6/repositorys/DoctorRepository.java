@@ -1,8 +1,11 @@
 package com.example.sf_lab_6.repositorys;
 
 import com.example.sf_lab_6.entitys.DoctorEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.ListCrudRepository;
 
-public interface DoctorRepository extends CrudRepository<DoctorEntity,Long> {
+import java.util.Collection;
 
+public interface DoctorRepository extends ListCrudRepository<DoctorEntity,Long> {
+
+    Collection<DoctorEntity> findBySpecification(String specification);
 }
