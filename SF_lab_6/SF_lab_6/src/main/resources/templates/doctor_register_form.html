@@ -7,16 +7,16 @@
 <h1>Doctor Registration</h1>
 <form th:method="POST" th:action="@{/admin/add-doctor}" th:object="${doctor}">
   <label>Full name:</label>
-  <input type="text" th:field="*{name}" /><br/>
+  <input type="text" field="*{name}" name="name"/><br/>
 
   <label>Specification:</label>
-  <input type="text" th:field="*{specification}"><br/>
+  <input type="text" field="*{specification}" name="specification"><br/>
 
   <label>Number:</label>
-  <input type="text" th:field="*{number}" /><br/>
+  <input type="text" field="*{number}" name="number"/><br/>
 
   <label>E-mail:</label>
-  <input type="text" th:field="*{email}" /><br/>
+  <input type="text" field="*{email}" name="email"/><br/>
   <label>Photo:</label>
   <button type="submit" value="Submit" >Submit</button>
 </form>

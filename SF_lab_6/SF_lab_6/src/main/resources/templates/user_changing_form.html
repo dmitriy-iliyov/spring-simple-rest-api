@@ -5,16 +5,16 @@
 </head>
 <body>
 <h1>User changing</h1>
-<form th:method="POST" th:action="@{/user/get/{id}/changed(id=${user.getId()})}" th:object="${user}">
+<form th:method="POST" th:action="@{/user/get/change}" th:object="${user}">
 
   <label>Full name:</label>
-  <input type="text" th:field="*{name}" /><br/>
+  <input type="text" field="*{name}" name="name"/><br/>
   <label>Number:</label>
-  <input type="text" th:field="*{number}" /><br/>
+  <input type="text" field="*{number}" name="number"/><br/>
   <label>E-mail:</label>
-  <input type="text" th:field="*{email}" /><br/>
+  <input type="text" field="*{email}" name="email"/><br/>
   <label>Password:</label>
-  <input type="text" th:field="*{password}" /><br/>
+  <input type="text" field="*{password}" name="password"/><br/>
   <button type="submit" value="Submit" >Submit</button>
 </form>
 </body>

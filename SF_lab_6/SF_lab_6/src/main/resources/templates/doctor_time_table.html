@@ -34,7 +34,7 @@
   </style>
 </head>
 <body>
-<form th:method="POST" th:action="@{/admin/get-doctor/{id}/create-time-table(id=${timeTable.getDoctorID()})}" th:object="${timeTable}">
+<form th:method="POST" th:action="@{/admin/create-timetable}" th:object="${timeTable}">
   <table class="table">
     <tr>
       <th colspan="2"> </th>
@@ -76,9 +76,9 @@
     <tr>
       <td colspan="2">Work time</td>
       <td>
-        <input type="hidden" th:field="*{date}">
-        <input type="hidden" th:field="*{doctorID}">
-        <select th:field="*{firstDayFrom}">
+        <input type="hidden" field="*{date}" name="date">
+        <input type="hidden" field="*{id}" name="id">
+        <select field="*{firstDayFrom}" name="firstDayFrom">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -94,40 +94,7 @@
         </select>
       </td>
       <td>
-        <select th:field="*{firstDayTo}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-
-      <td>
-        <select th:field="*{secondDayFrom}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-      <td>
-        <select th:field="*{secondDayTo}">
+        <select field="*{firstDayTo}" name="firstDayTo">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -144,7 +111,7 @@
       </td>
 
       <td>
-        <select th:field="*{thirdDayFrom}">
+        <select field="*{secondDayFrom}" name="secondDayFrom">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -160,40 +127,7 @@
         </select>
       </td>
       <td>
-        <select th:field="*{thirdDayTo}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-
-      <td>
-        <select th:field="*{forthDayFrom}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-      <td>
-        <select th:field="*{forthDayTo}">
+        <select field="*{secondDayTo}" name="secondDayTo">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -210,7 +144,7 @@
       </td>
 
       <td>
-        <select th:field="*{fifthDayFrom}">
+        <select field="*{thirdDayFrom}" name="thirdDayFrom">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -226,40 +160,7 @@
         </select>
       </td>
       <td>
-        <select th:field="*{fifthDayTo}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-
-      <td>
-        <select th:field="*{sixthDayFrom}">
-          <option value="0">Does not work</option>
-          <option value="8">8:00</option>
-          <option value="9">9:00</option>
-          <option value="10">10:00</option>
-          <option value="11">11:00</option>
-          <option value="12">12:00</option>
-          <option value="13">13:00</option>
-          <option value="14">14:00</option>
-          <option value="15">15:00</option>
-          <option value="16">16:00</option>
-          <option value="17">17:00</option>
-          <option value="18">18:00</option>
-        </select>
-      </td>
-      <td>
-        <select th:field="*{sixthDayTo}">
+        <select field="*{thirdDayTo}" name="thirdDayTo">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -276,7 +177,7 @@
       </td>
 
       <td>
-        <select th:field="*{seventhDayFrom}">
+        <select field="*{forthDayFrom}" name="forthDayFrom">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
@@ -292,7 +193,106 @@
         </select>
       </td>
       <td>
-        <select th:field="*{seventhDayTo}">
+        <select field="*{forthDayTo}" name="forthDayTo">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+
+      <td>
+        <select field="*{fifthDayFrom}" name="fifthDayFrom">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+      <td>
+        <select field="*{fifthDayTo}" name="fifthDayTo">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+
+      <td>
+        <select field="*{sixthDayFrom}" name="sixthDayFrom">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+      <td>
+        <select field="*{sixthDayTo}" name="sixthDayTo">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+
+      <td>
+        <select field="*{seventhDayFrom}" name="seventhDayFrom">
+          <option value="0">Does not work</option>
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          <option value="18">18:00</option>
+        </select>
+      </td>
+      <td>
+        <select field="*{seventhDayTo}" name="seventhDayTo">
           <option value="0">Does not work</option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
