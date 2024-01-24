@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h1>Doctor changing</h1>
+<form th:method="PATCH" th:action="@{/admin/get-doctor/{id}/changed(id=${doctor.getId()})}" th:object="${doctor}">
+
+  <label>Full name:</label>
+  <input type="text" th:field="*{name}" /><br/>
+  <label>Specification:</label>
+  <input type="text" th:field="*{specification}"><br/>
+  <label>Number:</label>
+  <input type="text" th:field="*{number}" /><br/>
+  <label>E-mail:</label>
+  <input type="text" th:field="*{email}" /><br/>
+  <button type="submit" value="Submit" >Submit</button>
+</form>
+</body>
+</html>
