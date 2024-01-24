@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Doctor</h1>
-<form th:method="GET" th:action="@{/admin/get-doctor}" th:object="${doctor}">
+<form th:method="GET" th:action="@{/admin/get-doctor/{id}(id=${doctor.getId()})}" th:object="${doctor}">
     <p th:text="${doctor.getName()}">VALUE</p>
     <p th:text="${doctor.getSpecification()}">VALUE</p>
     <p th:text="${doctor.getEmail()}">VALUE</p>
