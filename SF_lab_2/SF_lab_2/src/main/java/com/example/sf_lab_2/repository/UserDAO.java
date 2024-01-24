@@ -12,7 +12,6 @@ public class UserDAO {
 
     private final Connection connection = DataBaseConfig.getDataBaseConfig().getConnection();
 
-    private JdbcTemplate jdbcTemplate;
     public Integer createUser(User user){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Users (name, email, number, password) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);

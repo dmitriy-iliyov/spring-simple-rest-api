@@ -20,7 +20,7 @@ public class TimeTableDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public <DateFormat> void createTimeTable(TimeTable timeTable){
+    public void createTimeTable(TimeTable timeTable){
         String sql = "INSERT INTO DoctorTimeTable (doctor_id, date, firstDayFrom, firstDayTo, secondDayFrom, secondDayTo," +
                 " thirdDayFrom, thirdDayTo, forthDayFrom, forthDayTo, fifthDayFrom, fifthDayTo, sixthDayFrom, sixthDayTo, " +
                 "seventhDayFrom, seventhDayTo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
