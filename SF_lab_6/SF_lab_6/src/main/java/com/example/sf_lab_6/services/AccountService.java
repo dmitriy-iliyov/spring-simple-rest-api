@@ -33,7 +33,7 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
-    public AccountDTO entityData(AccountEntity userEntity){
-        return AccountDTO.entityData(userEntity);
+    public AccountDTO entityData(AccountEntity accountEntity){
+        return AccountDTO.entityData(accountEntity);
     }
 }

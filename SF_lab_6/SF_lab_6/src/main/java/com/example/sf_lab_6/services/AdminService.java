@@ -1,5 +1,6 @@
 package com.example.sf_lab_6.services;
 
+import com.example.sf_lab_6.DTO.AdminDTO;
 import com.example.sf_lab_6.entitys.AdminEntity;
 import com.example.sf_lab_6.repositorys.AdminRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class AdminService {
         adminRepository.save(admin);
     }
     @Transactional
-    public Optional<AdminEntity> findById(Long id){
-        return adminRepository.findById(id);
+    public Optional<AdminDTO> findById(Long id){
+        return adminRepository.findById(id).map(AdminDTO::entityData);
     }
 
     @Transactional
@@ -31,5 +32,9 @@ public class AdminService {
     @Transactional
     public void deleteById(Long id){
         adminRepository.deleteById(id);
+    }
+
+    public AdminDTO entityData(AdminEntity adminEntity){
+        return AdminDTO.entityData(adminEntity);
     }
 }
