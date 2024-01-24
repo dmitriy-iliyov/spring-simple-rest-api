@@ -56,7 +56,7 @@ public class AdministratorController {
     @PostMapping("/add-doctor")
     public String doctorSubmit(@ModelAttribute Doctor doctor){
         this.doctorService.createDoctor(doctor);
-        return "current_doctor_for_admin";
+        return "redirect:/admin/doctors";
     }
 
     @GetMapping("/get-doctor/{value}")
