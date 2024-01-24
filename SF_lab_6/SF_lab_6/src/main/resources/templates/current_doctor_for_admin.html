@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Doctor</h1>
+<form th:method="GET" th:action="@{/admin/get-doctor}" th:object="${doctor}">
+    <p th:text="${doctor.getName()}">VALUE</p>
+    <p th:text="${doctor.getSpecification()}">VALUE</p>
+    <p th:text="${doctor.getEmail()}">VALUE</p>
+    <p th:text="${doctor.getNumber()}">VALUE</p>
+    <a th:href="@{/admin/get-doctor/{id}/change(id=${doctor.getId()})}"> Edit doctor </a><br/>
+    <form th:method="POST" th:action="@{/admin/del-doctor/{id}(id=${doctor.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+    <a th:href="@{/admin/get-doctor/{id}/create-time-table(id=${doctor.getId()})}"> create doctor timetable</a><br/>
+    <a th:href="@{/admin/get-doctor/{id}/doctor-time-table(id=${doctor.getId()})}"> doctor timetable</a><br/>
+</form>
+</body>
+</html>

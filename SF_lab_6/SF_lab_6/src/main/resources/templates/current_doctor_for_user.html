@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Doctor</h1>
+<form th:method="GET" th:action="@{/user/get-doctor}" th:object="${doctor}">
+    <p th:text="${doctor.getName()}">VALUE</p>
+    <p th:text="${doctor.getSpecification()}">VALUE</p>
+    <p th:text="${doctor.getEmail()}">VALUE</p>
+</form>
+</body>
+</html>
