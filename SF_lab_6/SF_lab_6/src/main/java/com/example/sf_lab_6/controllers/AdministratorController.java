@@ -1,14 +1,23 @@
 package com.example.sf_lab_6.controllers;
 
 
+import com.example.sf_lab_6.DTO.AdminDTO;
+import com.example.sf_lab_6.DTO.DoctorDTO;
+import com.example.sf_lab_6.DTO.TimeTableDTO;
 import com.example.sf_lab_6.entitys.AdminEntity;
 import com.example.sf_lab_6.entitys.DoctorEntity;
+import com.example.sf_lab_6.entitys.TimeTableEntity;
 import com.example.sf_lab_6.services.AdminService;
 import com.example.sf_lab_6.services.DoctorService;
+import com.example.sf_lab_6.services.TimeTableService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+import java.util.Optional;
 
 
 @Controller
@@ -20,9 +29,12 @@ public class AdministratorController {
 
     private final DoctorService doctorService;
 
+    private final TimeTableService timeTableService;
+
     @GetMapping("")
-    public String adminHomePage(){
-        return "admin_home_page";
+    @ResponseBody
+    public int adminHomePage(){
+        return 0;
     }
 
     @GetMapping("/add")
@@ -32,15 +44,16 @@ public class AdministratorController {
     }
 
     @PostMapping("/add")
-    public String adminSubmit(@ModelAttribute AdminEntity admin){
-        this.administratorService.save(admin);
-        return "admin_register_form";
+    @ResponseBody
+    public AdminDTO adminSubmit(@ModelAttribute AdminEntity admin){
+        administratorService.save(admin);
+        return administratorService.entityData(admin);
     }
 
     @DeleteMapping("/del/{id}")
-    public String delAdmin(@PathVariable("id") Long id){
-        this.administratorService.deleteById(id);
-        return "redirect:/admin";
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delAdmin(@PathVariable("id") Long id){
+        administratorService.deleteById(id);
     }
 
     @GetMapping("/add-doctor")
@@ -50,63 +63,82 @@ public class AdministratorController {
     }
 
     @PostMapping("/add-doctor")
-    public String doctorSubmit(@ModelAttribute DoctorEntity doctor){
-        this.doctorService.save(doctor);
-        return "current_doctor_for_admin";
+    @ResponseBody
+    public DoctorDTO doctorSubmit(@ModelAttribute DoctorEntity doctor){
+        doctorService.save(doctor);
+        return doctorService.entityData(doctor);
     }
 
     @GetMapping("/get-doctor/{id}")
-    public String getDoctor(@PathVariable("id") Long id, Model model){
-        model.addAttribute("doctor", this.doctorService.findById(id));
-        return "current_doctor_for_admin";
+    @ResponseBody
+    public Optional<DoctorDTO> getDoctor(@PathVariable("id") Long id){
+        DoctorDTO doctorDTO = doctorService.findById(id).get();
+        return doctorService.findById(id);
     }
 
     @GetMapping("/doctors")
-    public String getDoctors(Model model){
-        model.addAttribute("doctors", this.doctorService.findAll());
+    //http://localhost:8080/admin/doctors?spec=info
+    //http://localhost:8080/admin/doctors?spec=specification
+    public String getDoctor(String spec, Model model){
+        Collection<DoctorDTO> doctors;
+        if(spec != null)
+            doctors = doctorService.findBySpecification(spec);
+         else
+            doctors = doctorService.findAll();
+        model.addAttribute("doctors", doctors);
         return "doctors_for_admins";
     }
 
+
     @GetMapping("/users")
-    public String getUsers(Model model){
+    public String getUsers(){
         return "users";
     }
 
     @GetMapping("/get-doctor/{id}/change")
     public String doctorFormForChange(@PathVariable("id") Long id, Model model){
-        model.addAttribute("doctor", this.doctorService.findById(id));
+        model.addAttribute("doctor", doctorService.findById(id));
         return "doctor_changing_form";
     }
 
-    @PostMapping("/get-doctor/{id}/changed")
-    public String doctorSubmitChanges(@ModelAttribute DoctorEntity doctor, Model model){
-        this.doctorService.save(doctor);
-        model.addAttribute("doctor", doctor);
-        return "current_doctor_for_admin";
+    @PatchMapping("/get-doctor/{id}/changed")
+    @ResponseBody
+    public DoctorDTO doctorSubmitChanges(@ModelAttribute DoctorEntity doctor, Model model){
+        doctorService.save(doctor);
+        return DoctorDTO.entityData(doctor);
     }
 
-    @PostMapping("/del-doctor/{id}")
+    @DeleteMapping ("/del-doctor/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String doctorSubmitChanges(@PathVariable("id") Long id){
-        this.doctorService.deleteById(id);
+        doctorService.deleteById(id);
         return "redirect:/admin/doctors";
     }
 
-//    @GetMapping("/get-doctor/{id}/create-time-table")
-//    public String appointmentsForm(Model model, @PathVariable("id") int id) {
-//        model.addAttribute("timeTable", new TimeTable(id));
-//        return "doctor_time_table";
-//    }
-//
-//    @PostMapping("/get-doctor/{id}/create-time-table")
-//    public String appointmentsSubmit(@ModelAttribute TimeTable timeTable, Model model){
-//        this.doctorService.createTimeTable(timeTable);
-//        model.addAttribute("timeTable", timeTable);
-//        return "doctor_timetable_for_users";
-//    }
+    @GetMapping("/create-timetable/{id}")
+    public String appointmentsForm(@PathVariable("id") Long id, Model model) {
+        TimeTableEntity timeTableEntity = new TimeTableEntity();
+        Optional<DoctorEntity> doctorEntity =  doctorService.findEntityById(id);
+        timeTableEntity.setDoctor(doctorEntity.get());
+        System.out.println(TimeTableDTO.entityToDTO(timeTableEntity));
+        model.addAttribute("timeTable", timeTableEntity);
+        return "doctor_time_table";
+    }
 
-//    @GetMapping("/admin/get-doctor/{id}/timetable")
-//    public String getDoctorAppointment(@PathVariable("id") int id, Model model){
-//        this.doctorService.getTimeTable(id);
-//        return "dr_timetable_for_users";
-//    }
+    @PatchMapping("/create-timetable/{id}")
+    @ResponseBody
+    public TimeTableDTO appointmentsSubmit(@ModelAttribute TimeTableEntity timeTable){
+        timeTableService.save(timeTable);
+        Optional<DoctorEntity> optionalEntity =  doctorService.findEntityById(timeTable.getId());
+        DoctorEntity doctorEntity = optionalEntity.get();
+        doctorEntity.setTimeTable(timeTable);
+        doctorService.save(doctorEntity);
+        return TimeTableDTO.entityToDTO(timeTable);
+    }
+
+    @GetMapping("/get-timetable/{id}")
+    @ResponseBody
+    public Optional<TimeTableDTO> getDoctorAppointment(@PathVariable("id") Long id){
+        return timeTableService.findById(id);
+    }
 }
