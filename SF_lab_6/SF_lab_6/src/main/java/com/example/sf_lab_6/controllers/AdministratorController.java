@@ -77,8 +77,6 @@ public class AdministratorController {
     }
 
     @GetMapping("/doctors")
-    //http://localhost:8080/admin/doctors?spec=info
-    //http://localhost:8080/admin/doctors?spec=specification
     public String getDoctor(String spec, Model model){
         Collection<DoctorDTO> doctors;
         if(spec != null)
@@ -103,7 +101,7 @@ public class AdministratorController {
 
     @PatchMapping("/get-doctor/{id}/changed")
     @ResponseBody
-    public DoctorDTO doctorSubmitChanges(@ModelAttribute DoctorEntity doctor, Model model){
+    public DoctorDTO doctorSubmitChanges(@ModelAttribute DoctorEntity doctor){
         doctorService.save(doctor);
         return DoctorDTO.entityData(doctor);
     }
